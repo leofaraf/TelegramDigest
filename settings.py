@@ -5,7 +5,7 @@ PHONE_NUMBER = "79969434611"  # number of telegram account
 DIGEST_CHANNEL = "digestbychatgpt"  # username of digest channel which will use to send message
 
 # IMPORTANT: you can use ChatGPT api only which VPN if you're live in Russia
-OPENAI_API_KEY = "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"  # API key for ChatGPT
+OPENAI_API_KEY = "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"  # API key for ChatGPT
 OPENAI_SYSTEM_ROLE = ("Ты русскоязычный ассистент саммаризатор, " +
                       "в ответ нужно ввести summary без доп. символов, " +
                       "сообщение должно быть до 200 символов")  # plan of work chat_gpt
@@ -18,5 +18,5 @@ SUMMARY_FORMAT = """**{}**
 DIGEST_FORMAT = """Всем привет. Дайджест по недавным постам!
 
 {}"""  # in {} will be list of summary (SUMMARY_FORMAT), between every summary will be empty line
-SCHEDULE_AT = "22:10"  # like "19:00", "21:20", "22:30"
+SCHEDULE_AT = "22:36"  # like "19:00", "21:20", "22:30"
 EXCEL_FILE_NAME = "channels.xlsx"  # this file will be using as mini-db for getting channels list
