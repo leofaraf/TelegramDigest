@@ -78,10 +78,10 @@ def slice_summary_if_too_long(summary):
 
 # gateway
 if __name__ == "__main__":
-    logging.info("Program has started")
-
     logging.basicConfig(filename='app.log', filemode='a',
                         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.DEBUG)
+    logging.info("Program has started")
+
     # uncomment code under if you wanna write hardcode value to excel db-file
     # excel.write_channels_hardcode("itbeard", "aiapodcast")
 
