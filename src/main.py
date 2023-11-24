@@ -2,16 +2,18 @@ import logging
 import time
 
 import schedule
-
-import settings
 from telethon import utils
+
+import telegram
+import settings
 
 import ai
 import excel
-import telegram
 
 
 def main():
+
+
     channels = excel.read_channels()
     logging.info("Have loaded channels: {}".format(channels))
 
@@ -25,20 +27,22 @@ def main():
         telegram.send_post(post)
     else:
         logging.error("summaries weren't found")
+    telegram.log_out()
 
 
 def get_summaries_by_channels(channels):
     summaries = []
     for channel in channels:
         messages = telegram.get_today_message(channel)
+        if not messages:
+            continue
 
         title = None
         summary_len = 0
         summary_buf = []
         for message in messages:
-            if title is None:
-                chat_from = message.chat if message.chat else (
-                    message.get_chat())  # telegram MAY not send the chat enity
+            if title is None and message.chat:
+                chat_from = message.chat  # telegram MAY not send the chat enity
                 chat_title = utils.get_display_name(chat_from)
                 title = chat_title
 
@@ -86,8 +90,12 @@ if __name__ == "__main__":
     # excel.write_channels_hardcode("itbeard", "aiapodcast")
 
     schedule.every().day.at(settings.SCHEDULE_AT).do(main)
+    # main()
 
     logging.info("Program has moved into scheduling state")
+
     while True:
         schedule.run_pending()
         time.sleep(1)
+
+
